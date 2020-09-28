@@ -5,10 +5,6 @@ void SparkleDigitron::init(int pins[7]) { SparkleDigitron::pins = pins; }
 
 void SparkleDigitron::scan() {
     for (int x = 0; x < 7; x++) {
-        // 全悬浮 避免鬼影
-        for (int y = 0; y < 7; y++) {
-            pinMode(pins[y], INPUT);
-        }
         for (int y = 0; y < 7; y++) {
             if (x != y) {
                 // 第第二层的index对应pin拉高或悬浮
@@ -23,6 +19,10 @@ void SparkleDigitron::scan() {
             }
         }
         delay(2);
+        // 全悬浮 避免鬼影
+        for (int y = 0; y < 7; y++) {
+            pinMode(pins[y], INPUT);
+        }
     }
 }
 
@@ -59,5 +59,21 @@ void SparkleDigitron::delayScan(int ms) {
             scan();
         }
         delay(ms - (14 * num));
+    }
+}
+
+void SparkleDigitron::getScanM(bool scanM[7][7]) {
+    for (int x = 0; x < 7; x++) {
+        for (int y = 0; y < 7; y++) {
+            scanM[x][y] = SparkleDigitron::scanM[x][y];
+        }
+    }
+}
+
+void SparkleDigitron::setScanM(bool scanM[7][7]) {
+    for (int x = 0; x < 7; x++) {
+        for (int y = 0; y < 7; y++) {
+            SparkleDigitron::scanM[x][y] = scanM[x][y];
+        }
     }
 }

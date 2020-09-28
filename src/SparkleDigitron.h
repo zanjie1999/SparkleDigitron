@@ -62,4 +62,6 @@ class SparkleDigitron {
     void showChar(int index, unsigned char num);
     void showIcon(int arrayIndex, int index);
     void delayScan(int ms);
+    void getScanM(bool scanM[7][7]);
+    void setScanM(bool scanM[7][7]);
 };
